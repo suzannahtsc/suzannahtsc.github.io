@@ -1,0 +1,707 @@
+/* ===================================================================
+   Design tokens
+   Palette: warm bone paper, near-black ink, dusty rose, aged-gold thread.
+   Type: Fraunces (display serif, collage/chapbook character) +
+         Work Sans (clean humanist body/utility).
+   Signature: torn deckle-paper edge between sections, and circular
+   postmark-style buttons for the two doorways (Art / Poetry) —
+   a nod to correspondence, chapbooks, and cut-paper collage.
+   =================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=Work+Sans:wght@300;400;500;600&family=Alfa+Slab+One&family=Caveat:wght@500;600;700&family=Alex+Brush&family=Special+Elite&display=swap');
+
+:root {
+  --paper: #FBEFDE;
+  --paper-light: #FFF8EE;
+  --ink: #2A4A2E;
+  --ink-soft: #5C6B54;
+  --rose: #F5427A;
+  --pink-light: #FBD8E2;
+  --gold: #E3A83E;
+  --yellow: #F4BB61;
+  --line: rgba(42, 74, 46, 0.18);
+
+  --display: 'Fraunces', Georgia, serif;
+  --body: 'Work Sans', -apple-system, sans-serif;
+  --poster: 'Alfa Slab One', 'Fraunces', Georgia, serif;
+  --script: 'Caveat', cursive;
+  --script-fancy: 'Alex Brush', cursive;
+  --typewriter: 'Special Elite', 'Courier New', monospace;
+
+  --max-w: 1080px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--display);
+  margin: 0;
+  color: var(--ink);
+}
+
+a {
+  color: inherit;
+}
+
+img { max-width: 100%; display: block; }
+
+/* ---------- Utility ---------- */
+
+.wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.eyebrow {
+  font-family: var(--body);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* ---------- Site header (used on gallery / poetry pages) ---------- */
+
+.site-header {
+  background: var(--rose);
+  padding: 18px 32px;
+}
+
+.site-header-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  min-height: 130px;
+}
+
+.site-header .wordmark {
+  font-family: var(--display);
+  font-size: 1.3rem;
+  font-style: italic;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
+
+.site-header .wordmark-img {
+  height: 130px;
+  width: auto;
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.site-header nav {
+  display: flex;
+  gap: 14px;
+  position: relative;
+  z-index: 2;
+}
+
+.site-header nav .postmark {
+  border-color: var(--paper-light);
+  color: var(--paper-light);
+}
+
+.site-header nav .postmark::before {
+  border-color: rgba(255, 248, 238, 0.45);
+}
+
+.site-header nav .postmark:hover {
+  background: var(--paper-light);
+  color: var(--ink);
+}
+
+/* ---------- Postmark buttons (the site's signature element) ---------- */
+
+.postmark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 118px;
+  height: 118px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  font-family: var(--body);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--ink);
+  position: relative;
+  transition: transform 0.35s ease, background 0.35s ease, color 0.35s ease;
+  background: transparent;
+}
+
+.postmark::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  border: 1px dashed var(--line);
+}
+
+.postmark:hover {
+  background: var(--ink);
+  color: var(--paper-light);
+  transform: rotate(-4deg) scale(1.03);
+}
+
+/* Hero buttons sit on the pink logo background, so they need a light
+   border/text instead of the dark version used elsewhere. */
+.hero-top .postmark {
+  border-color: var(--paper-light);
+  color: var(--paper-light);
+}
+
+.hero-top .postmark::before {
+  border-color: rgba(255, 248, 238, 0.45);
+}
+
+.hero-top .postmark:hover {
+  background: var(--paper-light);
+  color: var(--ink);
+}
+
+.postmark.small {
+  width: 84px;
+  height: 84px;
+  font-size: 0.66rem;
+}
+
+/* ---------- Hero (home page) ---------- */
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px 32px 60px;
+  position: relative;
+  background-color: var(--rose);
+  overflow: hidden;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 160px;
+  background: linear-gradient(to bottom, transparent, var(--yellow));
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+.hero-top,
+.hero-mid,
+.scroll-cue {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-top {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+.hero-mid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 18px;
+}
+
+.logo-mark {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(3.2rem, 9vw, 6.4rem);
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+.logo-image {
+  width: min(90vw, 560px);
+  height: auto;
+}
+
+.logo-sub {
+  font-family: var(--body);
+  font-size: 0.78rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.scroll-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--paper-light);
+}
+
+.scroll-cue .stem {
+  width: 1px;
+  height: 34px;
+  background: var(--paper-light);
+  animation: stretch 2.2s ease-in-out infinite;
+  transform-origin: top;
+}
+
+@keyframes stretch {
+  0%, 100% { transform: scaleY(0.6); opacity: 0.5; }
+  50% { transform: scaleY(1); opacity: 1; }
+}
+
+/* ---------- About section ---------- */
+
+.about {
+  background: var(--yellow);
+  padding: 110px 32px 120px;
+}
+
+.about-grid {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.photo-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.stack-photo {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 6px solid var(--rose);
+}
+
+.about-copy .eyebrow {
+  margin-bottom: 8px;
+  display: block;
+}
+
+.about-title {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-style: italic;
+  font-weight: 500;
+  margin-bottom: 48px;
+}
+
+.trio {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.trio-item {
+  padding-top: 0;
+}
+
+.trio-item h3 {
+  font-family: var(--script-fancy);
+  font-size: 3.6rem;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  margin-bottom: 6px;
+  color: var(--rose);
+  line-height: 1;
+}
+
+.trio-item p {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--typewriter);
+  font-size: 0.92rem;
+  line-height: 1.85;
+  max-width: 58ch;
+}
+
+/* ---------- Gallery (art page) ---------- */
+
+body.art-page {
+  background: var(--pink-light);
+}
+
+body.art-page .art-tile {
+  background: transparent;
+}
+
+.page-head {
+  padding: 60px 32px 20px;
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+body.contact-page .page-head {
+  text-align: center;
+}
+
+.contact-message {
+  max-width: 640px;
+  margin: 20px auto 120px;
+  padding: 0 32px;
+  text-align: center;
+}
+
+.contact-message p {
+  font-family: var(--typewriter);
+  color: var(--ink);
+  font-size: 0.95rem;
+  line-height: 1.9;
+}
+
+.page-head h1 {
+  font-family: var(--script-fancy);
+  font-size: clamp(3.4rem, 8vw, 5.2rem);
+  font-style: normal;
+  font-weight: 400;
+  color: var(--rose);
+  margin-top: 4px;
+  line-height: 1;
+}
+
+.page-head p {
+  font-family: var(--typewriter);
+  color: var(--ink);
+  font-size: 0.92rem;
+  line-height: 1.85;
+  max-width: 60ch;
+  margin-top: 18px;
+}
+
+.gallery-grid {
+  max-width: var(--max-w);
+  margin: 40px auto 100px;
+  padding: 0 32px;
+  column-count: 1;
+  column-gap: 36px;
+}
+
+@media (min-width: 560px) {
+  .gallery-grid { column-count: 2; }
+}
+
+@media (min-width: 900px) {
+  .gallery-grid { column-count: 3; }
+}
+
+.art-tile {
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  break-inside: avoid;
+  margin-bottom: 36px;
+  display: inline-block;
+  width: 100%;
+}
+
+.art-tile .art-image {
+  overflow: hidden;
+  transition: transform 0.25s ease;
+}
+
+.art-tile:hover .art-image {
+  transform: translateY(-4px);
+}
+
+.art-tile .art-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.art-caption {
+  padding: 14px 2px 4px;
+  text-align: center;
+}
+
+.art-caption .name {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+
+.art-caption .price {
+  font-family: var(--body);
+  font-size: 0.85rem;
+  color: var(--rose);
+  font-weight: 600;
+  margin-top: 4px;
+  letter-spacing: 0.03em;
+}
+
+.art-caption .price.sold {
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-style: italic;
+}
+
+.lightbox-caption .price.sold {
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-style: italic;
+}
+
+/* ---------- Lightbox / slideshow ---------- */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(34, 20, 25, 0.92);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 40px 20px;
+}
+
+.lightbox.open {
+  display: flex;
+}
+
+.lightbox-content {
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.lightbox-image-wrap {
+  max-height: 72vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-image-wrap img {
+  max-height: 72vh;
+  max-width: 100%;
+  object-fit: contain;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+.lightbox-caption {
+  text-align: center;
+  color: var(--paper-light);
+}
+
+.lightbox-caption .name {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 1.4rem;
+}
+
+.lightbox-caption .price {
+  font-family: var(--body);
+  font-size: 0.95rem;
+  color: var(--yellow);
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 28px;
+  right: 32px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--paper-light);
+  background: transparent;
+  color: var(--paper-light);
+  font-size: 1.3rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.lightbox-close:hover {
+  background: var(--paper-light);
+  color: var(--ink);
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1.5px solid var(--paper-light);
+  background: transparent;
+  color: var(--paper-light);
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.lightbox-nav:hover {
+  background: var(--paper-light);
+  color: var(--ink);
+}
+
+.lightbox-prev { left: 24px; }
+.lightbox-next { right: 24px; }
+
+@media (max-width: 700px) {
+  .lightbox-nav { width: 42px; height: 42px; font-size: 1.1rem; }
+  .lightbox-close { top: 16px; right: 16px; }
+  .lightbox-prev { left: 8px; }
+  .lightbox-next { right: 8px; }
+}
+
+/* ---------- Poetry "coming soon" page ---------- */
+
+.coming-soon {
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 32px;
+  text-align: center;
+}
+
+.coming-soon h1 {
+  font-family: var(--script-fancy);
+  font-size: clamp(3.2rem, 11vw, 8rem);
+  font-weight: 400;
+  font-style: normal;
+  color: var(--rose);
+  line-height: 1.1;
+  max-width: 20ch;
+}
+
+/* ---------- Poetry (blog style) ---------- */
+
+.poem-list {
+  max-width: 760px;
+  margin: 40px auto 120px;
+  padding: 0 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.poem-entry {
+  border-top: 1px solid var(--line);
+  padding-top: 36px;
+}
+
+.poem-entry .eyebrow {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.poem-entry h2 {
+  font-size: 1.8rem;
+  font-style: italic;
+  font-weight: 500;
+  margin-bottom: 18px;
+}
+
+.poem-entry .verse {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--ink);
+  white-space: pre-line;
+}
+
+.poem-entry .verse em { color: var(--rose); font-style: italic; }
+
+/* ---------- Footer ---------- */
+
+footer {
+  text-align: center;
+  padding: 40px 32px 60px;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 780px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+  .photo-stack {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .postmark {
+    width: 92px;
+    height: 92px;
+    font-size: 0.68rem;
+  }
+  .site-header-inner {
+    flex-direction: column;
+    gap: 16px;
+    min-height: auto;
+  }
+  .site-header .wordmark-img {
+    position: static;
+    transform: none;
+    margin: 0 auto;
+    height: 56px;
+  }
+  .site-header nav {
+    justify-content: center;
+  }
+}
