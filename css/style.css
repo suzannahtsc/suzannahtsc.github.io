@@ -17,6 +17,7 @@
   --ink-soft: #5C6B54;
   --rose: #F5427A;
   --pink-light: #FBD8E2;
+  --logo-green: #25572A;
   --gold: #E3A83E;
   --yellow: #F4BB61;
   --line: rgba(42, 74, 46, 0.18);
@@ -371,6 +372,37 @@ body.art-page {
   background: var(--pink-light);
 }
 
+body.poetry-page {
+  background: var(--logo-green);
+}
+
+body.poetry-page footer {
+  color: var(--paper-light);
+}
+
+body.poetry-page .back-link {
+  color: var(--paper-light);
+}
+
+body.poetry-page .back-link:hover {
+  color: var(--rose);
+}
+
+.poetry-fade {
+  height: 180px;
+  background: linear-gradient(to bottom, var(--rose), var(--logo-green));
+}
+
+.pink-fade {
+  height: 180px;
+  background: linear-gradient(to bottom, var(--rose), var(--pink-light));
+}
+
+.pink-fade {
+  height: 180px;
+  background: linear-gradient(to bottom, var(--rose), var(--pink-light));
+}
+
 body.art-page .art-tile {
   background: transparent;
 }
@@ -606,25 +638,75 @@ body.contact-page .page-head {
   .lightbox-next { right: 8px; }
 }
 
-/* ---------- Poetry "coming soon" page ---------- */
+/* ---------- Poetry index (title + preview grid) ---------- */
 
-.coming-soon {
-  min-height: calc(100vh - 200px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 60px 32px;
-  text-align: center;
+.poem-grid {
+  max-width: var(--max-w);
+  margin: 40px auto 120px;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 28px;
 }
 
-.coming-soon h1 {
-  font-family: var(--script-fancy);
-  font-size: clamp(3.2rem, 11vw, 8rem);
-  font-weight: 400;
-  font-style: normal;
+.poem-card {
+  display: block;
+  border: 1.5px solid var(--rose);
+  padding: 26px 24px;
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease;
+  background: var(--paper-light);
+}
+
+.poem-card:hover {
+  transform: translateY(-4px);
+  background: var(--pink-light);
+}
+
+.poem-card-title {
+  display: block;
+  font-family: var(--typewriter);
+  font-size: 1.15rem;
   color: var(--rose);
-  line-height: 1.1;
-  max-width: 20ch;
+  margin-bottom: 14px;
+  letter-spacing: 0.02em;
+}
+
+.poem-card-preview {
+  display: block;
+  font-family: var(--typewriter);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  white-space: pre-line;
+}
+
+/* ---------- Individual poem page ---------- */
+
+.poem-page {
+  max-width: 760px;
+  margin: 0 auto 120px;
+  padding: 60px 32px 0;
+}
+
+.back-link {
+  display: inline-block;
+  font-family: var(--body);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  text-decoration: none;
+  margin-bottom: 40px;
+}
+
+.back-link:hover {
+  color: var(--rose);
+}
+
+.poem-page .poem-entry {
+  border-top: none;
+  padding-top: 0;
 }
 
 /* ---------- Poetry (blog style) ---------- */
@@ -643,23 +725,20 @@ body.contact-page .page-head {
   padding-top: 36px;
 }
 
-.poem-entry .eyebrow {
-  display: block;
-  margin-bottom: 10px;
-}
-
-.poem-entry h2 {
-  font-size: 1.8rem;
-  font-style: italic;
-  font-weight: 500;
-  margin-bottom: 18px;
+.poem-entry .poem-title {
+  font-family: var(--typewriter);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--rose);
+  margin-bottom: 20px;
+  letter-spacing: 0.02em;
 }
 
 .poem-entry .verse {
-  font-family: var(--display);
-  font-size: 1.05rem;
+  font-family: var(--typewriter);
+  font-size: 0.95rem;
   line-height: 1.9;
-  color: var(--ink);
+  color: var(--paper-light);
   white-space: pre-line;
 }
 
